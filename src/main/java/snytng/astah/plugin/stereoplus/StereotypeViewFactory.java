@@ -27,7 +27,7 @@ public class StereotypeViewFactory {
 	private StereotypeViewFactory(){}
 
 	static ProjectAccessor projectAccessor = null;
-	static IDiagramViewManager diagramViewManager = null; 
+	static IDiagramViewManager diagramViewManager = null;
 
 	static {
 		try {
@@ -41,74 +41,58 @@ public class StereotypeViewFactory {
 	/*
 	 * ステレオタイプ一覧
 	 */
-	static StereotypeView svZone = new StereotypeView(
-			"Zone", 
-			"#00FF00",
+	static StereotypeView svClass = new StereotypeView(
+			"クラス",
+			"#FFFF99",
 			new String[]{
-					"",	
-					"Device",	
-					"Workshop",	
-					"Site",	
-					"Enterprise",	
-					"Inter-enterprise"
-			}, 
+					"",
+					"abstract",
+					"interface",
+					"realization",
+					"utility"
+			},
 			new String[]{
 					"#FFFFFF",	// 255 255 255
-					"#BBFFBB",  // 187
-					"#99FF99",  // 153 
-					"#66FF66",  // 102
-					"#33FF33",  // 51
-					"#00FF00"   // 0
+					"#FFFF99",	// 255 255 153
+					"#CCFFCC",  // 204 255 204
+					"#CCFFFF",  // 204 255 255
+					"#9999FF"   // 153 153 255
 			});
 
-	static StereotypeView svInteroperability = new StereotypeView(
-			"Interoperability", 
-			"#00FFFF", 
+	static StereotypeView svUsecase = new StereotypeView(
+			"ユースケース",
+			"#FF3366",
 			new String[]{
-					"",	
-					"Component",	
-					"Local Function",	
-					"Communication",	
-					"Information",	
-					"Service",	
-					"Business"
-			}, 
+					"",
+					"actor"
+			},
 			new String[]{
 					"#FFFFFF",	// 255 255 255
-					"#AAFFFF",  // 170 
-					"#88FFFF",  // 136
-					"#66FFFF",  // 102
-					"#44FFFF",  // 68
-					"#22FFFF",  // 34
-					"#00FFFF"   // 00
+					"#FF3366"	// 255 51 102
 			});
 
-	static StereotypeView svValueChain = new StereotypeView(
-			"Value Chain", 
-			"#0000FF", 
+	static StereotypeView svRobustness = new StereotypeView(
+			"ロバストネス",
+			"#99CCFF",
 			new String[]{
-					"",	
-					"Proposal",	
-					"Planning",	
-					"Operation",	
-					"Monitoring and Control",	
-					"Maintenance"
-			}, 
+					"",
+					"boundary",
+					"control",
+					"entity"
+			},
 			new String[]{
 					"#FFFFFF",	// 255 255 255
-					"#BBBBFF",  // 187
-					"#9999FF",  // 153
-					"#6666FF",  // 102
-					"#3333FF",  // 51
-					"#0000FF"   // 0
+					"#99CCFF",	// 153 204 255
+					"#FFCCCC",  // 255 204 204
+					"#FFCC33"   // 255 204 51
 			});
 
 	// デフォルトのステレオタイプを生成する
 	public static List<StereotypeView> getDefaultSteretypeViews(){
 		List<StereotypeView> svs = new ArrayList<>();
-		svs.add(svZone);
-		svs.add(svInteroperability);
-		svs.add(svValueChain);
+		svs.add(svClass);
+		svs.add(svUsecase);
+		svs.add(svRobustness);
 		return svs;
 	}
 
@@ -118,7 +102,7 @@ public class StereotypeViewFactory {
 		List<StereotypeView> svs = new ArrayList<>();
 		if(updateFlag){
 			updateFlag = false;
-			svs.add(svZone);
+			svs.add(svClass);
 			return svs;
 		} else {
 			updateFlag = true;
@@ -209,7 +193,7 @@ public class StereotypeViewFactory {
 
 		} catch (InvalidUsingException e) {
 			e.printStackTrace();
-			
+
 		} catch (ProjectNotFoundException e) {
 			e.printStackTrace();
 		}
